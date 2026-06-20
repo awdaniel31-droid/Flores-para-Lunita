@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Para ti 🌷</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial,sans-serif;
+overflow:hidden;
+
+background:
+linear-gradient(
+to bottom,
+#04081d,
+#0c1433,
+#1c2555
+);
+
+}
+
+/* ESTRELLAS */
+
+.estrellas{
+position:fixed;
+
+top:0;
+left:0;
+
+width:100%;
+height:100%;
+
+z-index:-1;
+
+pointer-events:none;
+}
+
+.estrellas::before,
+.estrellas::after{
+
+content:"";
+
+position:absolute;
+
+width:2px;
+height:2px;
+
+box-shadow:
+
+40px 80px white,
+150px 160px white,
+250px 70px white,
+420px 200px white,
+600px 120px white,
+800px 180px white,
+1000px 240px white,
+1200px 100px white,
+1400px 180px white,
+300px 450px white,
+700px 500px white,
+1100px 400px white,
+1400px 600px white;
+
+animation:
+brillar 3s infinite alternate;
+
+}
+
+.estrellas::after{
+
+transform:scale(2);
+
+opacity:.5;
+
+animation-duration:5s;
+
+}
+
+@keyframes brillar{
+
+from{
+opacity:.3;
+}
+
+to{
+opacity:1;
+}
+
+}
+
+/* PANTALLAS */
+
+.pantalla{
+
+height:100vh;
+
+display:flex;
+
+flex-direction:column;
+
+justify-content:center;
+
+align-items:center;
+
+color:white;
+
+}
+
+.oculto{
+
+display:none;
+
+}
+
+/* BOTONES */
+
+button{
+
+padding:14px 28px;
+
+font-size:18px;
+
+border:none;
+
+border-radius:20px;
+
+background:#ff66a3;
+
+color:white;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+button:hover{
+
+transform:scale(1.05);
+
+}
+
+/* FLORES */
+
+.flores{
+
+display:flex;
+
+gap:50px;
+
+flex-wrap:wrap;
+
+justify-content:center;
+
+margin-top:50px;
+
+}
+
+.tulipan{
+
+width:100px;
+
+height:230px;
+
+position:relative;
+
+cursor:pointer;
+
+opacity:0;
+
+transform:
+translateY(200px)
+scale(.2);
+
+animation:
+crecer 2s forwards;
+
+}
+
+.tulipan:nth-child(1){
+
+animation-delay:.3s;
+
+}
+
+.tulipan:nth-child(2){
+
+animation-delay:1s;
+
+}
+
+.tulipan:nth-child(3){
+
+animation-delay:1.8s;
+
+}
+
+@keyframes crecer{
+
+to{
+
+opacity:1;
+
+transform:
+translateY(0)
+scale(1);
+
+}
+
+}
+
+.petalos{
+
+position:relative;
+
+width:80px;
+
+height:70px;
+
+margin:auto;
+
+transform:scale(0);
+
+animation:
+
+abrir 1s forwards;
+
+animation-delay:1.5s;
+
+}
+
+@keyframes abrir{
+
+0%{
+
+transform:
+scale(0);
+
+}
+
+100%{
+
+transform:
+scale(1);
+
+}
+
+}
+
+.petalo{
+
+position:absolute;
+
+background:#ff4f90;
+
+width:40px;
+
+height:60px;
+
+border-radius:
+50%
+50%
+20%
+20%;
+
+}
+
+.petalo:nth-child(1){
+
+left:0;
+
+}
+
+.petalo:nth-child(2){
+
+right:0;
+
+}
+
+.petalo:nth-child(3){
+
+left:20px;
+
+top:-10px;
+
+}
+
+.tallo{
+
+width:8px;
+
+height:130px;
+
+background:#34b85a;
+
+margin:auto;
+
+transform-origin:bottom;
+
+animation:
+
+subir 2s forwards;
+
+}
+
+@keyframes subir{
+
+from{
+
+transform:
+scaleY(0);
+
+}
+
+to{
+
+transform:
+scaleY(1);
+
+}
+
+}
+
+/* MENSAJES */
+
+.mensaje{
+
+display:none;
+
+position:absolute;
+
+top:-80px;
+
+left:-40px;
+
+width:180px;
+
+background:white;
+
+color:black;
+
+padding:10px;
+
+border-radius:15px;
+
+text-align:center;
+
+}
+
+.tulipan:hover{
+
+transform:
+translateY(-10px);
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="estrellas"></div>
+
+<!-- INICIO -->
+
+<div id="inicio" class="pantalla">
+
+<h1>🌷 Tengo algo para ti 🌷</h1>
+
+<button onclick="mostrarMenu()">
+Abrir
+</button>
+
+</div>
+
+<!-- MENU -->
+
+<div
+id="menu"
+
+class="pantalla oculto">
+
+<h2>
+Escoge una opción
+</h2>
+
+<button onclick="mostrarFlores()">
+
+Ver flores
+
+</button>
+
+</div>
+
+<!-- JARDIN -->
+
+<div
+id="jardin"
+
+class="pantalla oculto">
+
+<h2>
+Toca un tulipán 🌷
+</h2>
+
+<div class="flores">
+
+<div class="tulipan"
+onclick="mostrarMensaje(this)">
+
+<div class="mensaje">
+
+Te amo 3 millones✨
+
+</div>
+
+<div class="petalos">
+
+<div class="petalo"></div>
+<div class="petalo"></div>
+<div class="petalo"></div>
+
+</div>
+
+<div class="tallo"></div>
+
+</div>
+
+<div class="tulipan"
+onclick="mostrarMensaje(this)">
+
+<div class="mensaje">
+
+Te amo en todos los universos🌸
+
+</div>
+
+<div class="petalos">
+
+<div class="petalo"></div>
+<div class="petalo"></div>
+<div class="petalo"></div>
+
+</div>
+
+<div class="tallo"></div>
+
+</div>
+
+<div class="tulipan"
+onclick="mostrarMensaje(this)">
+
+<div class="mensaje">
+
+Tus locuras van con mis locuras 🌷
+
+</div>
+
+<div class="petalos">
+
+<div class="petalo"></div>
+<div class="petalo"></div>
+<div class="petalo"></div>
+
+</div>
+
+<div class="tallo"></div>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+function mostrarMenu(){
+
+inicio.classList.add(
+"oculto"
+);
+
+menu.classList.remove(
+"oculto"
+);
+
+}
+
+function mostrarFlores(){
+
+menu.classList.add(
+"oculto"
+);
+
+jardin.classList.remove(
+"oculto"
+);
+
+}
+
+function mostrarMensaje(flor){
+
+document
+.querySelectorAll(
+".mensaje"
+)
+
+.forEach(
+
+m=>
+
+m.style.display=
+"none"
+
+);
+
+flor
+.querySelector(
+".mensaje"
+)
+
+.style.display=
+"block";
+
+}
+
+</script>
+
+</body>
+
+</html>
